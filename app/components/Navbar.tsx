@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
   const [isPortrait, setIsPortrait] = useState<boolean | null>(null);
 
   const [navItems, setNavItems] = useState<NavItem[]>([
-    { name: "Home", path: "/" },
+    { name: "Home", path: "/home" },
     { name: "About", path: "/about" },
     { name: "Skills", path: "/skills" },
     { name: "Experience", path: "/experience" },

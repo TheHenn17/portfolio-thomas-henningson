@@ -1,11 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-const Home: React.FC<{}> = ({}) => {
-  return (
-    <div>My home page</div>
-  );
-};
+export default function Landing() {
+  const router = useRouter();
 
-export default Home;
+  useEffect(() => {
+    router.push("/home");
+  }, [router]);
+
+  return (<div></div>);
+}
