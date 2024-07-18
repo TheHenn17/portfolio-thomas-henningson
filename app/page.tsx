@@ -1,7 +1,11 @@
-export default function Home() {
+"use client";
+
+import React from "react";
+
+const Home: React.FC<{}> = ({}) => {
   return (
-    <div className="flex items-center justify-center flex-grow">
-      Hello and Welcome to my Website.
-    </div>
+    <div>My home page</div>
   );
-}
+};
+
+export default Home;

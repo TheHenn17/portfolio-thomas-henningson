@@ -24,3 +24,62 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Basic styles for navbar */
+.navbar {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.navbar-element {
+  display: flex;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  padding: 10px; /* Adjust as needed */
+}
+
+.navbar-element:hover {
+  color: rgb(0, 0, 255); /* Adjust to the desired hover color */
+}
+
+.navbar-slider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px; /* Adjust height as needed */
+  background: linear-gradient(to right, transparent 5%, rgba(0, 0, 255, 0.5) 30%, rgba(0, 0, 255, 1) 50%, rgba(0, 0, 255, 0.5) 70%, transparent 95%);
+  transition: transform 0.3s ease, width 0.3s ease; /* Smooth transitions */
+}
+
+@media (orientation: portrait) {
+    /* Basic styles for navbar */
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: fit-content; /* Adjust width as needed */
+    height: auto; /* Full height */
+  }
+  .navbar-element {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px; /* Adjust as needed */
+    position: relative;
+  }
+
+  .navbar-element:hover {
+    color: rgb(0, 0, 255); /* Adjust to the desired hover color */
+  }
+
+  .navbar-slider {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px; /* Adjust width as needed */
+    background: linear-gradient(to bottom, transparent 5%, rgba(0, 0, 255, 0.5) 30%, rgba(0, 0, 255, 1) 50%, rgba(0, 0, 255, 0.5) 70%, transparent 95%);
+    transition: transform 0.3s ease, height 0.3s ease; /* Smooth transitions */
+  }
+}
