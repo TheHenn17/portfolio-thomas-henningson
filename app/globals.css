@@ -4,13 +4,15 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-rgb: 200, 200, 200;
+  --background-rgb: 255, 255, 255;
+  --background-darker-rgb: 32, 32, 32;
+  --accent-rgb: 52, 255, 185;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-rgb: 32, 32, 32;
+    --background-rgb: 40, 40, 40;
   }
 }
 
@@ -30,6 +32,10 @@ body {
   display: flex;
   position: relative;
   width: 100%;
+  background-color: rgb(var(--background-darker-rgb));
+  color: rgb(255, 255, 255);
+  justify-content: flex-end;
+  box-shadow: 0 0 5px rgba(0,0,0,1); /* Optional shadow for better visibility */
 }
 
 .navbar-element {
@@ -37,11 +43,11 @@ body {
   text-align: left;
   cursor: pointer;
   position: relative;
-  padding: 10px; /* Adjust as needed */
+  padding: 10px;
 }
 
 .navbar-element:hover {
-  color: rgb(0, 0, 255); /* Adjust to the desired hover color */
+  color: rgb(var(--accent-rgb)); /* Adjust to the desired hover color */
 }
 
 .navbar-slider {
@@ -49,37 +55,38 @@ body {
   bottom: 0;
   left: 0;
   height: 2px; /* Adjust height as needed */
-  background: linear-gradient(to right, transparent 5%, rgba(0, 0, 255, 0.5) 30%, rgba(0, 0, 255, 1) 50%, rgba(0, 0, 255, 0.5) 70%, transparent 95%);
+  background: linear-gradient(to right, transparent 5%, rgba(var(--accent-rgb), 0.5) 30%, rgba(var(--accent-rgb), 1) 50%, rgba(var(--accent-rgb), 0.5) 70%, transparent 95%);
   transition: transform 0.3s ease, width 0.3s ease; /* Smooth transitions */
 }
 
-@media (orientation: portrait) {
-    /* Basic styles for navbar */
-  .navbar {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: fit-content; /* Adjust width as needed */
-    height: auto; /* Full height */
-  }
-  .navbar-element {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 10px; /* Adjust as needed */
-    position: relative;
-  }
+.navbar-vertical {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  width: fit-content; /* Adjust width as needed */
+  height: auto; /* Full height */
+  background-color: rgb(var(--background-darker-rgb));
+  z-index: 1000; /* Ensure it is above other content */
+}
 
-  .navbar-element:hover {
-    color: rgb(0, 0, 255); /* Adjust to the desired hover color */
-  }
+.navbar-element-vertical {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px; /* Adjust as needed */
+  position: relative;
+}
 
-  .navbar-slider {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 2px; /* Adjust width as needed */
-    background: linear-gradient(to bottom, transparent 5%, rgba(0, 0, 255, 0.5) 30%, rgba(0, 0, 255, 1) 50%, rgba(0, 0, 255, 0.5) 70%, transparent 95%);
-    transition: transform 0.3s ease, height 0.3s ease; /* Smooth transitions */
-  }
+.navbar-element-vertical:hover {
+  color: rgb(var(--accent-rgb)); /* Adjust to the desired hover color */
+}
+
+.navbar-slider-vertical {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px; /* Adjust width as needed */
+  background: linear-gradient(to bottom, transparent 5%, rgba(var(--accent-rgb), 0.5) 30%, rgba(var(--accent-rgb), 1) 50%, rgba(var(--accent-rgb), 0.5) 70%, transparent 95%);
+  transition: transform 0.3s ease, height 0.3s ease; /* Smooth transitions */
 }
