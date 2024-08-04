@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
+import pic from "@/app/images/profile.jpeg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,7 +12,7 @@ interface NavItem {
   path: string;
 }
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<{}> = ({}) => {
   const router = useRouter();
   const pathname = usePathname();
   const [activeIndex, setActiveIndex] = useState<number>(0); //which nav item is selected
@@ -69,7 +71,7 @@ const Navbar: React.FC = () => {
         setIsPopupOpen(false); //close popup if they resize to large screen
         refreshSlider();
       }
-      setIsSmallScreen(window.innerWidth < 516); //set screen size variable
+      setIsSmallScreen(window.innerWidth < 760); //set screen size variable
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -106,45 +108,73 @@ const Navbar: React.FC = () => {
   return (
     <>
       {isSmallScreen ? (
-        <div className="navbar pr-2">
-          <div className="navbar-element">
-            <button ref={buttonRef} onClick={(e) => {e.stopPropagation(); setIsPopupOpen(!isPopupOpen);}}>
-              <FontAwesomeIcon icon={faBars} />
-            </button>
+        <div className="navbar flex items-center">
+          {/* Profile Picture */}
+          <div className="navbar-element flex-shrink-0">
+            <Image
+              src={pic}
+              alt="Profile Picture"
+              width={32} // Adjust width as needed
+              height={32} // Adjust height as needed
+              className="rounded-full"
+            />
           </div>
-          {isPopupOpen && (
-              <div className="navbar-vertical" ref={popupRef}>
-                {navItems.map((item, index) => (
-                  <div
-                    key={item.path}
-                    className={`navbar-element-vertical ${activeIndex === index ? 'active' : ''}`}
-                    onClick={() => {
-                      router.push(item.path);
-                      setActiveIndex(index);
-                    }}
-                  >
-                    {item.name}
-                  </div>
-                ))}
-                <div className="navbar-slider-vertical ml-1" ref={verticalSliderRef}></div>
-              </div>
-            )}
+          <div className="pl-2 cursor-default">Thomas Henningson</div>
+          <div className="flex-grow flex justify-end">
+            <div className="navbar-element">
+              <button ref={buttonRef} onClick={(e) => {e.stopPropagation(); setIsPopupOpen(!isPopupOpen);}}>
+                <FontAwesomeIcon icon={faBars} />
+              </button>
+            </div>
+            {isPopupOpen && (
+                <div className="navbar-vertical" ref={popupRef}>
+                  {navItems.map((item, index) => (
+                    <div
+                      key={item.path}
+                      className={`navbar-element-vertical ${activeIndex === index ? 'active' : ''}`}
+                      onClick={() => {
+                        router.push(item.path);
+                        setActiveIndex(index);
+                      }}
+                    >
+                      {item.name}
+                    </div>
+                  ))}
+                  <div className="navbar-slider-vertical ml-1" ref={verticalSliderRef}></div>
+                </div>
+              )}
+            </div>
         </div>
       ) : (
-        <div className="navbar pr-6">
-          {navItems.map((item, index) => (
-            <div
-              key={item.path}
-              className={`navbar-element ${activeIndex === index ? 'active' : ''}`}
-              onClick={() => {
-                router.push(item.path);
-                setActiveIndex(index);
-              }}
-            >
-              {item.name}
-            </div>
-          ))}
-          <div className="navbar-slider mb-1" ref={sliderRef}></div>
+        <div className="navbar flex items-center">
+          {/* Profile Picture */}
+          <div className="navbar-element flex-shrink-0">
+            <Image
+              src={pic}
+              alt="Profile Picture"
+              width={32} // Adjust width as needed
+              height={32} // Adjust height as needed
+              className="rounded-full"
+            />
+          </div>
+          <div className="pl-2 cursor-default">Thomas Henningson</div>
+
+          {/* Navbar Items */}
+          <div className="flex-grow flex justify-end">
+            {navItems.map((item, index) => (
+              <div
+                key={item.path}
+                className={`navbar-element ${activeIndex === index ? 'active' : ''}`}
+                onClick={() => {
+                  router.push(item.path);
+                  setActiveIndex(index);
+                }}
+              >
+                {item.name}
+              </div>
+            ))}
+            <div className="navbar-slider mb-1" ref={sliderRef}></div>
+          </div>
         </div>
       )}
     </>

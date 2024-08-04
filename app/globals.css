@@ -16,9 +16,20 @@
   }
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 @layer utilities {
@@ -30,16 +41,20 @@ body {
 /* Basic styles for navbar */
 .navbar {
   display: flex;
+  align-items: center; /* Center align items vertically */
   position: relative;
   width: 100%;
   background-color: rgb(var(--background-darker-rgb));
   color: rgb(255, 255, 255);
-  justify-content: flex-end;
-  box-shadow: 0 0 5px rgba(0,0,0,1); /* Optional shadow for better visibility */
+  justify-content: space-between; /* Push items to the edges */
+  padding: 0 1.5rem; /* Add horizontal padding */
+  z-index: 999;
+  box-shadow: 0 1px 5px rgba(0,0,0,1); /* Optional shadow for better visibility */
 }
 
 .navbar-element {
   display: flex;
+  align-items: center; /* Center align text vertically */
   text-align: left;
   cursor: pointer;
   position: relative;
@@ -68,6 +83,7 @@ body {
   height: auto; /* Full height */
   background-color: rgb(var(--background-darker-rgb));
   z-index: 1000; /* Ensure it is above other content */
+  box-shadow: -1px 1px 5px rgba(0,0,0,1); /* Optional shadow for better visibility */
 }
 
 .navbar-element-vertical {
@@ -89,4 +105,32 @@ body {
   width: 2px; /* Adjust width as needed */
   background: linear-gradient(to bottom, transparent 5%, rgba(var(--accent-rgb), 0.5) 30%, rgba(var(--accent-rgb), 1) 50%, rgba(var(--accent-rgb), 0.5) 70%, transparent 95%);
   transition: transform 0.3s ease, height 0.3s ease; /* Smooth transitions */
+}
+
+
+
+/* Basic styles for footer */
+.footer {
+  display: flex;
+  align-items: center; /* Center align items vertically */
+  position: relative;
+  width: auto;
+  background-color: rgb(var(--background-darker-rgb));
+  color: rgb(255, 255, 255);
+  justify-content: center; /* Push items to the edges */
+  z-index: 999;
+  box-shadow: 0 -1px 5px rgba(0,0,0,1); /* Optional shadow for better visibility */
+}
+
+.footer-element {
+  display: flex;
+  align-items: center; /* Center align text vertically */
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  padding: 10px;
+}
+
+.footer-element:hover {
+  color: rgb(var(--accent-rgb)); /* Adjust to the desired hover color */
 }
